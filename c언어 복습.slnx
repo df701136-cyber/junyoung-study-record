@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="c언어 복습/c언어 복습.vcxproj" />
+  <Project Path="c언어 복습/c언어 복습.vcxproj" Id="bc8fdb64-990e-4d95-b50e-71ac5741c6b9" />
 </Solution>
