@@ -2,25 +2,55 @@
 
 
 int main() {
-	int x,y; // 정수형 변수 x,y
-	
-	scanf("%d %d",&x,&y);
-	printf("%d\n",x+y); //산술연산자 +
-	printf("%d\n",x%y); // 산술연산자 %는 나머지 연산자. x를 y로 나눈 나머지를 출력.
+	int money;
+	int score;
+	scanf("%d",&money);
+	if (money >= 0) { // if-else문
+		printf("알맞은 입력\n");
+	}
+	else
+		printf("잘못된 입력\n");
+	if (money > 10000) { //일반적인 조건문
+		printf("rich\n");
+	}
+	printf("score는 최대가 100점.\n");
+	scanf("%d",&score);
+	if (score < 0) {
+		printf("잘못된 입력\n");
+	}
+	if (score >= 0) { // 중첩 조건문이자 연속적인 조건문.
+		if (score > 90) {
+			printf("A등급\n");
+		}
+		else if (90 > score > 70) {
+			printf("B등급\n");
+		}
+		else if (70 > score > 50) {
+			printf("C등급\n");
+		}
+		else if (50 > score > 30) {
+			printf("D등급\n");
+		}
+		else if (30 > score >= 0) {
+			printf("F등급\n");
 
-	printf("%d \n",++x);
-	printf("%d", y++);
-	// 둘 다 같은 증가 연산자지만 ++x는 전위 증가 연산자 이므로 값을 증가시키고 출력, y는 후위 증가 연산자이므로 
-	//값을 출력시키고 증가시킨다. 따라서 x=x+1이 되고 y=y가 출력되고 이후엔 y도 y+1이 된다. 결론적으로 값은 같아진다.
+	}
+	switch(score){ // switch문이다. 하나의 변수에 대해서 특정한 값이 나올 때마다 다른 행동을 하도록 하는 조건문이다.
+	case 100:
+			printf("만점!\n");
+			break; // break문은 즉시 switch문을 빠져나가게 하는 역할을 한다.
+	case 0:
+		printf("재시험!\n");
+		break;
+	default: // 이외에 다른 값들은 모두 이곳으로 오게 되어 default문이 실행된다.
+		break;
+	}
+
+
 	
-	//이외에도 많은 연산자가 존재한다. <,>(크고 작은),!=(같지 않다),==(같다),=(대입),&&(둘 다),||(둘 중 하나라도) 등등.
-	//연산자에는 결합 우선순위도 존재한다. 대표적으로 연산에 쓰이는 것으로 말하자면 1. 증감 2. 곱셈,나눗셈,나머지 3. 덧셈 뺄셈이다.
-	double f = 10; //10.0이 저장
-	int i = 3.14; // 3이 저장
-	// 만약 double형 변수 3.14와 int형 변수 10이 더해지면 int형 변수 10이 double형으로 자동 형변환되어 13.14가 된다.
-	//위 와 같은 것들을 자동형변환이라고 한다.
-	double p = 6.8977;
-	(int)p; // 6이 된다. 이것을 명시적 형변환이라고 한다.
+
+
+	
 
 
 	return 0;
