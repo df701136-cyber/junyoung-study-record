@@ -1,57 +1,39 @@
-﻿#include <stdio.h> // 한국어 깨져서 나오는거 오류 해결. 다른 이름으로 저장해서 유니코드(utf-8 서명있는) 한국어로 바꿔서 저장 후
-// 빌드에서 솔루션 다시 빌드하니 한국어가 제대로 출력 되고 스킵되는 거 없이 잘 실행 됐다. 오류수정 파일1에도 코딩 문법 오류는 없다.
+﻿#include <stdio.h>
 
 int main() {
-	int money;
-	int score;
-
-	printf("가지고 있는 money값을 입력하세요.\n");
-	scanf("%d", &money);
-
-	if (money >= 0) { // if-else문
-		printf("알맞은 입력 \n");
+	int sum = 0;
+	int i = 1;
+	int n; // 아래 오류가 없도록 n은 10을 입력할 것.
+	printf("n의 값을 입력해라\n");
+	scanf("%d",&n);
+	while (i < n) { //while문 while문은 조건에 달하기 까지 계속 반복한다. 조건이 거짓이 되는 순간 while문은 종료된다.
+		sum = sum+i;
+		i++;
 	}
-	else
-		printf("잘못된 입력 \n");
+	printf("1부터 %d까지 더한 값은 %d이다.\n",n,sum);
 
-	if (money >= 10000) { //일반적인 조건문
-		printf("rich \n");
+	int j = 11;
+	do {
+		printf("do-while문 실행 중\n");
+	} while (j<n); //do-while문은 조건에 맞지 않더라도 무조건 한번은 실행이 된다. 예를 들어 i가 10이고 n이 9라도
+	// do-while문은 실행 중이라는 문장이 한번은 출력이 된다.
+
+	for (i = 0; i < n; i++) { // for문이다. for문도 가운데 조건식이 거짓이 되는 순간 반복을 중단한다.
+		printf("n의 숫자만큼 반복하여 출력합니다\n");
 	}
-
-	printf("score는 최대가 100점.\n");
-	scanf("%d", &score);
-
-	if (score < 0) {
-		printf("잘못된 입력\n");
-	}
-	if (score >= 0) { // 중첩 조건문이자 연속적인 조건문.
-		if (score >= 90) {
-			printf("A등급\n");
-		}
-		else if (90 > score && score >= 70) {
-			printf("B등급\n");
-		}
-		else if (70 > score && score >= 50) {
-			printf("C등급\n");
-		}
-		else if (50 > score && score >= 30) {
-			printf("D등급\n");
-		}
-		else if (30 > score && score >= 0) {
-			printf("F등급\n");
+	int k = 1;
+	while (1) { // while문을 이용한 무한루프이다.
+		printf("%d\n",k);
+		k++;
+		if (k == 10) {
+			break; // 이처럼 무한루프여도 조건문을 사용하여 특정 조건이 만족되면 break문을 이용하여 반복문을 종료시킬 수 있다.
 		}
 	}
-
-	switch (score) { // switch문이다. 하나의 변수에 대해서 특정한 값이 나올 때마다 다른 행동을 하도록 하는 조건문이다.
-	case 100:
-		printf("만점!\n");
-		break; // break문은 즉시 switch문을 빠져나가게 하는 역할을 한다.
-	case 0:
-		printf("재시험!\n");
-		break;
-	default: // 이외에 다른 값들은 모두 이곳으로 오게 되어 default문이 실행된다.
-		break;
+	for (int l = 0; l < 10; l++) {
+		if (l % 2 != 0) {
+			continue; // continue문을 이용하여 조건이 만족되지 않는다면 곧바로 다음 반복으로 넘어가게 할 수 있다.
+			// 현재 코드에서는 2로 나누어떨어지지 않는다면 다음 반복으로 넘어가게 하여 짝수만 출력할 수 있게 된다.
+		}
+		printf("%d\n",l);
 	}
-
-	return 0;
 }
