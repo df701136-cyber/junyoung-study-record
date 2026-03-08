@@ -1,39 +1,36 @@
 ﻿#include <stdio.h>
+#include <stdlib.h> // rand함수를 사용하기 위해 필요한 헤더파일
+#include <time.h> // time함수를 사용하기 위해 필요한 헤더파일
 
-int main() {
-	int sum = 0;
-	int i = 1;
-	int n; // 아래 오류가 없도록 n은 10을 입력할 것.
-	printf("n의 값을 입력해라\n");
-	scanf("%d",&n);
-	while (i < n) { //while문 while문은 조건에 달하기 까지 계속 반복한다. 조건이 거짓이 되는 순간 while문은 종료된다.
-		sum = sum+i;
-		i++;
+int bigger(int x, int y) { // 함수라는 것이다. 반환값이 존재하지 않을 땐 괄호 안에 있는 매개변수를 쓸 필요 없지만 현재는
+// x or y 중 더 큰 숫자를 반환해야 하기 때문에 매개변수를 사용한 것이다.
+	if (x > y) {
+		return x;
 	}
-	printf("1부터 %d까지 더한 값은 %d이다.\n",n,sum);
-
-	int j = 11;
-	do {
-		printf("do-while문 실행 중\n");
-	} while (j<n); //do-while문은 조건에 맞지 않더라도 무조건 한번은 실행이 된다. 예를 들어 i가 10이고 n이 9라도
-	// do-while문은 실행 중이라는 문장이 한번은 출력이 된다.
-
-	for (i = 0; i < n; i++) { // for문이다. for문도 가운데 조건식이 거짓이 되는 순간 반복을 중단한다.
-		printf("n의 숫자만큼 반복하여 출력합니다\n");
+	else if (x==y) {
+		printf("두 값이 같다.");
 	}
-	int k = 1;
-	while (1) { // while문을 이용한 무한루프이다.
-		printf("%d\n",k);
-		k++;
-		if (k == 10) {
-			break; // 이처럼 무한루프여도 조건문을 사용하여 특정 조건이 만족되면 break문을 이용하여 반복문을 종료시킬 수 있다.
-		}
-	}
-	for (int l = 0; l < 10; l++) {
-		if (l % 2 != 0) {
-			continue; // continue문을 이용하여 조건이 만족되지 않는다면 곧바로 다음 반복으로 넘어가게 할 수 있다.
-			// 현재 코드에서는 2로 나누어떨어지지 않는다면 다음 반복으로 넘어가게 하여 짝수만 출력할 수 있게 된다.
-		}
-		printf("%d\n",l);
+	else {
+		return y;
 	}
 }
+
+
+
+
+
+int main() {
+	int big;
+	int x,y;
+	srand((unsigned)time(NULL)); // rand함수를 쓰기 위한 시드값을 설정하는 함수.
+	x = rand() % 100 + 1; // 1~100 사이에서 랜덤한 숫자를 x에 부여한다는 뜻.
+	y = rand() % 100 + 1;
+	big = bigger(x,y); // 지금은 x,y라는 변수가 들어갔지만 숫자가 들어가도 무방하다.
+	printf("가장 큰 숫자는? %d",big);
+	return 0;
+}
+
+// 이런 직접 함수를 만들어서 사용하는 경우도 있고, 다양한 함수가 존재한다.
+// 수학함수도 있다. = floor(),ceil()은 내림,올림 함수이고 fabs()는 절댓값으로 반환해주는 함수. pow()는 제곱을 구하는 함수.
+// sqrt()는 제곱근을 구하는 함수. , sin,cos,tan 삼각함수도 존재한다.
+// 함수를 사용하는 이유는 소스코드의 중복성을 없애주고, 한번 제작한 함수는 다른 프로그램 제작할 때도 사용할 수 있다.
