@@ -1,31 +1,59 @@
 ﻿#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define SIZE 5
 
-//n에 5를 입력했다고 가정하고 재귀함수에 대해서 설명하겠다.
-//fatorial(5)가 호출이 되면 n이 5이므로 return값이 5*factorial(4)가 된다. 하지만 우리는 factorial(4)가 무엇인지 모른다.
-// 그래서 컴퓨터는 factorial(4)를 계산하기 위해서 fatorial(4)를 호출한다. 이것이 n값이 1이 될 때까지 반복한다. 결국 2*factorial(1)
-//에 다다른다. fatorial(1)은 n이 1이므로 rreturn값이 1이 된다. 따라서 fatorial(2)는 2가 되고 fatorial(2)까지 알았으므로 
-// 다시 위로 올라가서 똑같은 방식으로 계산이 된다. 결국 마지막에 fatorial(5)의 return값은 120이 된다.
-int factorial(int n) { // 순환호출을 이용한 재귀함수이다.
-	printf("factorial(%d)\n",n);
 
-	if(n<=1) // 이 조건 덕분에 n이 1이 되면 faoctorial(1)값을 알게 되어 다시 위로 올라가면서 계산을 하게 되어 값을 구할 수 있다.
-		return 1;
-	else
-		return n*factorial(n-1);
+
+int sum(int x[],int y[]) { // 배열을 매개변수로 받는 함수. 포인터에서 좀 더 자세하게 설명할 예정.
+	int sum = 0;
+	for (int i = 0; i < SIZE; i++) {
+		sum = sum+x[i]+y[i];
+	}
+	return sum;
 }
+
+
 
 int main() {
 	
-	int n;
-	scanf("%d",&n);
-	printf("%d!은 %d입니다.",n,factorial(n));
-	return 0;
-}
+	int x[SIZE]; // SIZE 크기만큼을 가진 배열 x 선언.
+	for (int i = 0; i < SIZE; i++) { // 배열과 반복문을 이용한 코드
+		x[i] = i;
+	}
+	for (int i = 0; i < SIZE; i++) {
+		printf("%d\n",x[i]);
+	}
+	int y[5] = {13,15,33,45,22}; // 이렇게 선언하고 초기화할 수도 있음.
+	for (int i = 0; i < SIZE; i++) { 
+		x[i] = y[i]; // 배열의 복사
+	}
 
-// 순환 알고리즘은 자기 자신을 호출하는 부분과 순환 호출을 멈추는 부분으로 구성된다. 만약 순환 호출을 멈추는 부분이 없다면 시스템 스택을
-// 다 사용할 때까지 순환적으로 호출하다가 결국 에러를 내면서 멈출 것이다.
-// int x(int n){
-//     if(n<=3) return 3; <- 순환을 멈추는 부분
-//     else return n*x(n-1); <- 순환호출을 하는 부분
-// } 이렇게 구성된 것을 순환 알고리즘이라고 한다. 
+	printf("두 배열의 합 = %d\n",sum(x,y)); // 배열을 매개변수로 쓸 때는 []를 붙이지 않고 배열 이름만 작성한다. 포인터에서 좀 더 
+	// 자세하게 다룰 예정이다. 일단 알고 있으면 된다.
+
+	int s[3][5]; // 2차원 배열이다. 앞 숫자가 행의 개수, 뒤 숫자가 열의 개수이다. 3행 5열의 배열이 만들어진다.
+	
+	srand((unsigned)time(NULL));
+
+	for (int i = 0; i < 3; i++) { // 이중 반복문을 이용해서 2차원 배열에 랜덤한 숫자를 넣는다.
+		for (int j = 0; j < 5; j++) {
+			s[i][j] = rand()%100+1;
+		}
+	}
+	for (int i = 0; i < 3; i++) { // 첫번쨰 반복문에는 행의 개수를
+		for (int j = 0; j < 5; j++) { // 두번째 반복문에는 열의 개수가 들어가야 한다.
+			printf("%d ",s[i][j]);
+		}
+		printf("\n");
+	}
+	int ss[2][3] = { // 2차원 배열은 반복문 없이 이런 식으로 초기화 할 수 있다.
+		{1,2,3},
+		{4,5,6}
+	};
+
+
+
+	return 0;
+} 
 
